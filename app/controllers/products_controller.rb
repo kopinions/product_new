@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-
     product = Product.create(product_params)
     product.current_price = Price.new({effect_date: Date.today}.merge(price_params))
     response.location = product_path product
