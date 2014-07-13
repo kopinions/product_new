@@ -74,13 +74,18 @@ RSpec.describe ProductsController, :type => :controller do
 
   describe 'POST' do
     context 'create product' do
-
+      let! (:banana) {Product.create({name: 'banana', description: 'yellow banana'})}
       before(:each) {
-        post :create
+        expect(Product).to receive(:create).with({name: 'banana', description: 'yellow banana'}).and_return(banana)
+        post :create, format: :json, product: {name: 'banana', description: 'yellow banana'}
       }
 
       it 'return 201' do
         expect(response).to have_http_status(201)
+      end
+
+      it 'return uri of create product' do
+        expect(response.header['Location']).to end_with("/products/#{banana.id}")
       end
     end
   end
