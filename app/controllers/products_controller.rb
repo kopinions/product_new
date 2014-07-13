@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
   def index
-    head 200
+    @products = Product.all()
   end
 end
