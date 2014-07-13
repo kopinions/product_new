@@ -16,4 +16,20 @@ RSpec.describe OrdersController, :type => :controller do
       end
     end
   end
+
+  describe 'POST' do
+    context 'user kayla' do
+      let! (:kayla) {users(:kayla)}
+
+      context 'create order' do
+        before(:each) do
+          post :create, user_id: kayla.id, format: :json
+        end
+
+        it 'return 201' do
+          expect(response).to have_http_status(201)
+        end
+      end
+    end
+  end
 end
