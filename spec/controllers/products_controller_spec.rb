@@ -39,11 +39,16 @@ RSpec.describe ProductsController, :type => :controller do
     context "product exist" do
 
       before {
-        get :show, id: 100
+        expect(Product).to receive(:find).with(100).and_return(products(:apple))
+        get :show, id: 100, format: :json
       }
 
       it 'return ok' do
         expect(response).to have_http_status(200)
+      end
+
+      it 'return product name' do
+        expect(json["name"]).to eq("apple")
       end
     end
   end

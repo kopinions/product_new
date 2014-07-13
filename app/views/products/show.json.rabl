@@ -1,0 +1,2 @@
+object @product
+attribute :name
