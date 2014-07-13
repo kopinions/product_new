@@ -59,5 +59,16 @@ RSpec.describe ProductsController, :type => :controller do
         expect(json["uri"]).to end_with("/products/#{products(:apple).id}")
       end
     end
+
+    context "product not exist" do
+      before {
+        expect(Product).to receive(:find).with(1).and_raise(ActiveRecord::RecordNotFound)
+        get :show, id: 1, format: :json
+      }
+
+      it 'return not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 end
