@@ -1,0 +1,7 @@
+---
+- hosts: localenv
+  sudo: true
+  roles:
+    - {role: common}
+    - {role: postgres}
+    - {role: server, local_code_base: "{{home_dir}}/new_order", remote_code_base: "https://github.com/sjkyspa/product_new.git"}
