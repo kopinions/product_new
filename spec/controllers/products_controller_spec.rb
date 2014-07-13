@@ -71,4 +71,17 @@ RSpec.describe ProductsController, :type => :controller do
       end
     end
   end
+
+  describe 'POST' do
+    context 'create product' do
+
+      before(:each) {
+        post :create
+      }
+
+      it 'return 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
+  end
 end

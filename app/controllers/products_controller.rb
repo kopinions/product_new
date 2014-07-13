@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def create
+    head 201
+  end
+  
   private
     def get_product
       @product = Product.find(params['id'].to_i)
