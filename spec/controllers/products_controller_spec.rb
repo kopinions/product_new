@@ -34,4 +34,17 @@ RSpec.describe ProductsController, :type => :controller do
       end
     end
   end
+
+  describe "GET" do
+    context "product exist" do
+
+      before {
+        get :show, id: 100
+      }
+
+      it 'return ok' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
