@@ -77,7 +77,8 @@ RSpec.describe ProductsController, :type => :controller do
       let! (:banana) {Product.create({name: 'banana', description: 'yellow banana'})}
       before(:each) {
         expect(Product).to receive(:create).with({name: 'banana', description: 'yellow banana'}).and_return(banana)
-        post :create, format: :json, product: {name: 'banana', description: 'yellow banana'}
+        expect_any_instance_of(Price).to receive(:save).and_call_original
+        post :create, format: :json, product: {name: 'banana', description: 'yellow banana', price: {amount: 100}}
       }
 
       it 'return 201' do

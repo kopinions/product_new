@@ -9,11 +9,16 @@ class ProductsController < ApplicationController
   end
 
   def create
+
     product = Product.create(product_params)
+    product.current_price = Price.new({effect_date: Date.today}.merge(price_params))
     response.location = product_path product
     head 201
   end
 
+  def price_params
+    params.require("product").permit(price: [:amount] )[:price]
+  end
   def product_params
     params.require("product").permit(:name, :description)
   end
