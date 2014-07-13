@@ -48,7 +48,15 @@ RSpec.describe ProductsController, :type => :controller do
       end
 
       it 'return product name' do
-        expect(json["name"]).to eq("apple")
+        expect(json["name"]).to eq(products(:apple).name)
+      end
+
+      it 'return product description' do
+        expect(json["description"]).to eq(products(:apple).description)
+      end
+
+      it 'return product description' do
+        expect(json["uri"]).to end_with("/products/#{products(:apple).id}")
       end
     end
   end
