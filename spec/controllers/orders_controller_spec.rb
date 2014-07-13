@@ -25,7 +25,8 @@ RSpec.describe OrdersController, :type => :controller do
         before(:each) do
           expect(Order).to receive(:new).with({name: "sofia"}).and_call_original
           expect_any_instance_of(Order).to receive(:save).and_call_original
-          post :create, user_id: kayla.id, format: :json, order: {name: "sofia"}
+          expect_any_instance_of(OrderItem).to receive(:save).and_call_original
+          post :create, user_id: kayla.id, format: :json, order: {name: "sofia", order_items: [{product_id: products(:apple).id, amount: 2}]}
         end
 
         it 'return 201' do

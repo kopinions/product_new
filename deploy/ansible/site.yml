@@ -1,6 +1,5 @@
 ---
 - hosts: localenv
-  sudo: true
   roles:
     - {role: common}
     - {role: postgres}
