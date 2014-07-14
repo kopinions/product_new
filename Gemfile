@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 
 gem 'rabl'
 
+
+gem 'therubyracer'
+gem 'execjs'
+
 gem "rspec-rails", :group => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
