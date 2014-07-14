@@ -28,6 +28,7 @@ production:
   adapter: postgresql
   pool: 5
   timeout: 5000
-  datebase: order
+  database: order
   username: twer
   password: twer
+  host: localhost
